@@ -1,0 +1,42 @@
+.header_inner {
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 40px;
+}
+
+.header_navigation {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header_navigation a {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.header_navigation p {
+  cursor: pointer;
+}
+
+.langChanger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.langChanger p {
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.langChanger span {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: var(--white);
+}

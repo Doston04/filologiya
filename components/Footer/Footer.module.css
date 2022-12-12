@@ -15,6 +15,25 @@
 
 .footer_top {
   padding-block: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.footer_local_navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.local_nav_div {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+.local_nav_div p {
+  cursor: pointer;
 }
 
 .footer_navigation {
@@ -73,4 +92,75 @@
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 30px;
   padding-bottom: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ndc_logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ndc_logo_div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ndc_logo_div > span {
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--white);
+}
+
+.blue {
+  color: #2857fd;
+}
+
+@media (max-width: 1800px) {
+  .local_nav_div {
+    gap: 60px;
+  }
+  .footer_nav_link span {
+    font-size: 16p;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .info_nav {
+    gap: 24px;
+  }
+  .sm_icon_div {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer_navigation {
+    flex-direction: column;
+    gap: 40px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 880px) {
+  .footer_local_navigation {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  .info_nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer_bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 40px;
+  }
 }

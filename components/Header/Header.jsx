@@ -1,22 +1,37 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Header.module.css";
 
-export default function Header() {
+export default function Header({ toTop, onRefClick }) {
   const router = useRouter();
   const { locale } = router;
   // const t = locale === "ru" ? ru : uz;
 
-  // const changeLocale = (req) => {
-  //   router.push(`/${router.pathname}`, `/${router.pathname}`, {
-  //     locale: req,
-  //   });
-  // };
+  const [currentLocale, setCurrentLocale] = useState(locale);
+
+  const header = useRef();
+  const scrollMagic = () => {
+    let top = window.pageYOffset;
+
+    if (top >= 10) {
+      header.current.classList.add("background");
+    } else {
+      header.current.classList.remove("background");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollMagic);
+    return () => {
+      window.removeEventListener("scroll", scrollMagic);
+    };
+  }, [scrollMagic]);
 
   return (
-    <header>
+    <header ref={header} className={styles.header}>
       <div className={`box ${styles.header_inner}`}>
-        <p className="logo" role="button">
+        <p className="logo" role="button" onClick={toTop}>
           ФИЛОЛОГИЯ
         </p>
         <nav className={styles.header_navigation}>
@@ -37,17 +52,35 @@ export default function Header() {
           </p>
         </nav>
         <nav className={styles.header_navigation}>
-          <a href="tel:+998991234567">+998 99 123 45 67</a>
+          <a className={styles.phone} href="tel:+998991234567">
+            +998 99 123 45 67
+          </a>
           <div className={styles.langChanger}>
-            <p className="p" role="button">
-              Uz
-            </p>
-            <span></span>
-            <p className="p" role="button">
-              Ru
-            </p>
+            {router.locales.map((locale) => {
+              return (
+                <Link
+                  key={locale}
+                  href={router.asPath}
+                  locale={locale}
+                  onClick={() => setCurrentLocale(locale)}
+                  className={
+                    locale == currentLocale
+                      ? `${styles.link} ${styles.active}`
+                      : styles.link
+                  }
+                  role="button"
+                >
+                  {locale.toUpperCase()}
+                </Link>
+              );
+            })}
           </div>
         </nav>
+        <div className={styles.hamburger}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </header>
   );

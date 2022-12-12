@@ -6,7 +6,9 @@ export default function QuotesSection() {
           <h1 className="h1">
             Мысли и результаты, которые вы сделали с нашими студентами
           </h1>
-          <p className="p">Результаты моих читателей</p>
+          <p style={{ color: "#5D5D5F" }} className="p">
+            Результаты моих читателей
+          </p>
         </div>
         <div className="quotes_container">
           <Quote />

@@ -1,12 +1,36 @@
 import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
 import AboutSection from "../components/AboutSection";
+import CoursesSection from "../components/CoursesSection";
 import Footer from "../components/Footer/Footer";
 import Form from "../components/Form";
+import Header from "../components/Header/Header";
 import HeroSection from "../components/HeroSection";
+import InfoBlock from "../components/InfoSection";
 import MiniBlock from "../components/MiniBlock";
 import QuotesSection from "../components/QuotesSection";
+import TariffSection from "../components/TariffSection";
 
 export default function Home() {
+  function toTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  const onRefClick = (ref) => {
+    ref.current.scrollIntoView(true);
+  };
+
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsReady(true);
+    }, 1000);
+  }, []);
+
   return (
     <>
       <Head>
@@ -18,15 +42,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="wrapper">
+        <Header toTop={toTop} onRefClick={onRefClick} />
         <main>
           <HeroSection />
           <MiniBlock />
-          <Form />
+          <CoursesSection />
+          <TariffSection />
+          <InfoBlock />
           <AboutSection />
           <QuotesSection />
           <Form />
         </main>
-        <Footer />
+        <Footer toTop={toTop} onRefClick={onRefClick} />
+      </div>
+      <div className={isReady ? "spinner" : "spinner show"}>
+        <div class="lds-dual-ring"></div>
       </div>
     </>
   );

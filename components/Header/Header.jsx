@@ -3,14 +3,15 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import styles from "./Header.module.css";
 
-export default function Header({ toTop, onRefClick }) {
+export default function Header({ toTop, onRefClick, sections, allInfo }) {
   const router = useRouter();
   const { locale } = router;
-  // const t = locale === "ru" ? ru : uz;
 
   const [currentLocale, setCurrentLocale] = useState(locale);
+  const [isMenu, setIsMenu] = useState(false);
 
   const header = useRef();
+
   const scrollMagic = () => {
     let top = window.pageYOffset;
 
@@ -28,6 +29,22 @@ export default function Header({ toTop, onRefClick }) {
     };
   }, [scrollMagic]);
 
+  useEffect(() => {
+    setIsMenu(false);
+  }, [locale]);
+
+  useEffect(() => {
+    window.addEventListener("click", (e) => {
+      if (e.target.className.includes("Header_mobile_header__RCGxd")) {
+        setIsMenu(false);
+      } else if (
+        e.target.className.includes("Header_mobile_header_inner__DC7_1")
+      ) {
+        setIsMenu(true);
+      }
+    });
+  }, []);
+
   return (
     <header ref={header} className={styles.header}>
       <div className={`box ${styles.header_inner}`}>
@@ -35,25 +52,17 @@ export default function Header({ toTop, onRefClick }) {
           ФИЛОЛОГИЯ
         </p>
         <nav className={styles.header_navigation}>
-          <p className="p" role="button">
-            О нас
-          </p>
-          <p className="p" role="button">
-            Наш курс
-          </p>
-          <p className="p" role="button">
-            Наши услуги
-          </p>
-          <p className="p" role="button">
-            FAQ
-          </p>
-          <p className="p" role="button">
-            Полезные советы
-          </p>
+          {sections.map((section) => {
+            return (
+              <p className="p" role="button" key={section.id}>
+                {section.name}
+              </p>
+            );
+          })}
         </nav>
         <nav className={styles.header_navigation}>
-          <a className={styles.phone} href="tel:+998991234567">
-            +998 99 123 45 67
+          <a className={styles.phone} href={`tel: ${allInfo.phone_number}`}>
+            {allInfo.phone_number}
           </a>
           <div className={styles.langChanger}>
             {router.locales.map((locale) => {
@@ -76,10 +85,54 @@ export default function Header({ toTop, onRefClick }) {
             })}
           </div>
         </nav>
-        <div className={styles.hamburger}>
+        <div
+          className={styles.hamburger}
+          role="button"
+          onClick={() => setIsMenu(true)}
+        >
           <span></span>
           <span></span>
           <span></span>
+        </div>
+      </div>
+      <div
+        className={
+          isMenu
+            ? `${styles.mobile_header} ${styles.show}`
+            : styles.mobile_header
+        }
+      >
+        <div className={styles.mobile_header_inner}>
+          {sections.map((section) => {
+            return (
+              <p className="p" key={section.id}>
+                {section.name}
+              </p>
+            );
+          })}
+          <a className={styles.phone} href={`tel: ${allInfo.phone_number}`}>
+            {allInfo.phone_number}
+          </a>
+          <div className={styles.langChanger}>
+            {router.locales.map((locale) => {
+              return (
+                <Link
+                  key={locale}
+                  href={router.asPath}
+                  locale={locale}
+                  onClick={() => setCurrentLocale(locale)}
+                  className={
+                    locale == currentLocale
+                      ? `${styles.link} ${styles.active}`
+                      : styles.link
+                  }
+                  role="button"
+                >
+                  {locale.toUpperCase()}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </header>

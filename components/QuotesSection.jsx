@@ -1,3 +1,7 @@
+import Image from "next/image";
+import { arrowDown } from "../icons/icons";
+import avatar from "../public/media/jamila-opa.png";
+
 export default function QuotesSection() {
   return (
     <section>
@@ -12,12 +16,18 @@ export default function QuotesSection() {
         </div>
         <div className="quotes_container">
           <Quote />
-          <Quote2 />
           <Quote />
           <Quote />
           <Quote />
           <Quote />
-          <Quote2 />
+        </div>
+        <div
+          style={{ display: "grid", placeItems: "center", paddingTop: "40px" }}
+        >
+          <button className="more_btn">
+            <span>Узнать больше</span>
+            {arrowDown}
+          </button>
         </div>
       </div>
     </section>
@@ -27,18 +37,20 @@ export default function QuotesSection() {
 const Quote = () => {
   return (
     <div className="quote_div">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt,
-      officiis.
-    </div>
-  );
-};
-
-const Quote2 = () => {
-  return (
-    <div className="quote_div">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia id, aut
-      tempore quibusdam laudantium odio repellat rerum eaque voluptatem,
-      molestias nam reiciendis? A ipsa dolorem officia vero modi odio soluta.
+      <div className="quote_top">
+        <Image className="quote_avatar" src={avatar} alt="avatar" />
+        <div className="quote_owner_div">
+          <p className="quote_owner_name">Александрa Медведевa</p>
+          <p className="p">Журналистка</p>
+        </div>
+      </div>
+      <p className="p">
+        “Было просто очень приятно быть в учебном пространстве с людьми со всего
+        мира. Я думаю, что в целом атмосфера очень позитивная. Кажется для меня
+        как безопасное пространство. Занятия очень хорошо разработаны для
+        взаимодействия друг с другом, поэтому его легко следить и оставаться
+        фокусируемым. Даже устал и поздно ночью”
+      </p>
     </div>
   );
 };

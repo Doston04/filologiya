@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import {
   email,
   facebook,
@@ -9,7 +10,14 @@ import {
 } from "../../icons/icons";
 import styles from "./Footer.module.css";
 
-export default function Footer({ toTop, onRefClick }) {
+export default function Footer({
+  toTop,
+  onRefClick,
+  sections,
+  translations,
+  allInfo,
+  map,
+}) {
   return (
     <footer className={styles.footer}>
       <div className={`box ${styles.footer_inner}`}>
@@ -19,22 +27,23 @@ export default function Footer({ toTop, onRefClick }) {
               ФИЛОЛОГИЯ
             </p>
             <div className={styles.local_nav_div}>
-              <p className="p" role="button">
-                Тарифы
-              </p>
-              <p className="p" role="button">
-                Наш курс
-              </p>
-              <p className="p" role="button">
-                О нас
-              </p>
+              {sections.map((section) => {
+                return (
+                  <p className="p" key={section.id}>
+                    {section.name}
+                  </p>
+                );
+              })}
             </div>
           </nav>
           <nav className={styles.footer_navigation}>
             <div className={styles.info_nav}>
-              <a href="tel:+998991234567" className={styles.footer_nav_link}>
+              <a
+                href={`tel: ${allInfo.phone_number}`}
+                className={styles.footer_nav_link}
+              >
                 {phone}
-                <span>+998 99 123 45 67</span>
+                <span>{allInfo.phone_number}</span>
               </a>
               <a
                 href="#"
@@ -43,21 +52,21 @@ export default function Footer({ toTop, onRefClick }) {
                 className={styles.footer_nav_link}
               >
                 {location}
-                <span>Toshkent shahri, Uzbekistan</span>
+                <span>{map}</span>
               </a>
               <a
-                href="mailto:index@filologiya.com"
+                href={`mailto: ${allInfo.email}`}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.footer_nav_link}
               >
                 {email}
-                <span>index@filologiya.com</span>
+                <span>{allInfo.email}</span>
               </a>
             </div>
             <div className={styles.social_media_nav}>
               <a
-                href="#"
+                href={allInfo.instagram}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.sm_icon_div}
@@ -65,7 +74,7 @@ export default function Footer({ toTop, onRefClick }) {
                 {instagram}
               </a>
               <a
-                href="#"
+                href={allInfo.telegram}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.sm_icon_div}
@@ -73,7 +82,7 @@ export default function Footer({ toTop, onRefClick }) {
                 {telegram}
               </a>
               <a
-                href="#"
+                href={allInfo.facebook}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.sm_icon_div}
@@ -86,7 +95,7 @@ export default function Footer({ toTop, onRefClick }) {
         <div className={styles.footer_bottom}>
           <div>
             <p className="p">&copy; {new Date().getFullYear()} Filologiya</p>
-            <p className="p">Все права защищены.</p>
+            <p className="p">{translations.privacy_policy}</p>
           </div>
           <div className={styles.ndc_logo}>
             <a href="https://ndc.uz/ru" className={styles.ndc_logo_div}>
@@ -95,10 +104,10 @@ export default function Footer({ toTop, onRefClick }) {
             </a>
             <div className={styles.ndc_texts}>
               <p className="p">
-                <span className={styles.blue}>Сайт разработан в</span> National
-                Development Community
+                <span className={styles.blue}>{translations.developed_by}</span>{" "}
+                National Developers Community
               </p>
-              <p className="p">Перейти на сайт разработчиков</p>
+              <p className="p">{translations.developers_site}</p>
             </div>
           </div>
         </div>

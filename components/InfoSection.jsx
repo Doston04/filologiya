@@ -1,10 +1,9 @@
 import { blueCheck } from "../icons/icons";
-import Form from "./Form";
+// import Form from "./Form";
 
 export default function InfoBlock() {
   return (
     <section>
-      <Form />
       <div className="box infoblock_inner">
         <div className="infoblock_div">
           <h2 className="h2">Как преподается наш урок</h2>

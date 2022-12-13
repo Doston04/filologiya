@@ -1,4 +1,7 @@
+import Image from "next/image";
 import { qalpoq } from "../icons/icons";
+import aboutImg1 from "../public/media/img1.png";
+import aboutImg2 from "../public/media/img2.png";
 
 export default function AboutSection() {
   return (
@@ -41,7 +44,10 @@ export default function AboutSection() {
               <p className="p">Записаться на курс</p>
             </button>
           </div>
-          <div></div>
+          <div className="about_images_container">
+            <Image src={aboutImg1} alt="About image" />
+            <Image src={aboutImg2} alt="About image" />
+          </div>
         </div>
         <div className="career_div_container">
           <div className="career_div">

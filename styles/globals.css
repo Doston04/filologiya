@@ -856,10 +856,6 @@ a {
     font-size: 18px;
     line-height: 27px;
   }
-  .form_form input {
-    border-radius: 40px;
-    padding: 20px 30px;
-  }
   .hero_content > div:first-child {
     align-items: center !important;
     gap: 40px !important;
@@ -972,5 +968,16 @@ a {
   .quote_avatar {
     max-width: 48px;
     height: 48px;
+  }
+}
+
+@media (max-width: 400px) {
+  .form_form input {
+    border-radius: 40px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .form_form button {
+    border-radius: 12px;
   }
 }

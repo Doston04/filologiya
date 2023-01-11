@@ -31,6 +31,18 @@
 
 .header_navigation p {
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.phone {
+  transition: 0.3s;
+}
+
+.header_navigation p:hover,
+.link:hover,
+.phone:hover {
+  color: var(--blue);
+  transition: 0.3s;
 }
 
 .langChanger {
@@ -42,6 +54,7 @@
   text-transform: uppercase;
   cursor: pointer;
   padding-right: 10px;
+  transition: 0.3s;
 }
 
 .link:last-child {

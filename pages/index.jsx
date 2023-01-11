@@ -17,7 +17,14 @@ export default function Home() {
   const router = useRouter();
   const { locale } = router;
 
-  const BASE_URL = "https://fmx.choopon.uz/api";
+  const servicesRef = useRef();
+  const coursesRef = useRef();
+  const tariffsRef = useRef();
+  const aboutRef = useRef();
+  const resultsRef = useRef();
+  const formRef = useRef();
+
+  const BASE_URL = process.env.NEXT_PUBLIC_ENDPOINT;
 
   function toTop() {
     window.scrollTo({
@@ -37,10 +44,6 @@ export default function Home() {
   const [translations, setTranslations] = useState({});
 
   let translationsArray = [];
-
-  useEffect(() => {
-    setLoading(true);
-  }, [locale]);
 
   useEffect(() => {
     if (locale == "ru") {
@@ -110,30 +113,34 @@ export default function Home() {
     {
       id: "1",
       name: translations.about,
+      myRef: aboutRef,
     },
     {
       id: "2",
       name: translations.services,
+      myRef: servicesRef,
     },
     {
       id: "3",
       name: translations.courses,
+      myRef: coursesRef,
     },
     {
       id: "4",
       name: translations.tariffs,
+      myRef: tariffsRef,
     },
     {
       id: "5",
       name: translations.result,
+      myRef: resultsRef,
     },
     {
       id: "6",
       name: translations.registration,
+      myRef: formRef,
     },
   ];
-
-  // console.log(allInfo);
 
   return (
     <>
@@ -154,17 +161,36 @@ export default function Home() {
           allInfo={allInfo}
         />
         <main>
-          <HeroSection translations={translations} />
-          <MiniBlock translations={translations} />
-          <CoursesSection translations={translations} />
-          <TariffSection translations={translations} />
+          <HeroSection
+            translations={translations}
+            formRef={formRef}
+            onRefClick={onRefClick}
+          />
+          <MiniBlock translations={translations} myRef={servicesRef} />
+          <CoursesSection
+            translations={translations}
+            myRef={coursesRef}
+            BASE_URL={BASE_URL}
+            formRef={formRef}
+          />
+          <TariffSection translations={translations} myRef={tariffsRef} />
           <InfoBlock translations={translations} />
-          <AboutSection translations={translations} />
-          <QuotesSection translations={translations} />
+          <AboutSection
+            translations={translations}
+            myRef={aboutRef}
+            formRef={formRef}
+            onRefClick={onRefClick}
+          />
+          <QuotesSection
+            translations={translations}
+            BASE_URL={BASE_URL}
+            myRef={resultsRef}
+          />
           <Form
             translations={translations}
             BASE_URL={BASE_URL}
             setIsSuccess={setIsSuccess}
+            myRef={formRef}
           />
         </main>
         <Footer

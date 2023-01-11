@@ -1,8 +1,8 @@
 import { play, question, star } from "../icons/icons";
 
-export default function MiniBlock() {
+export default function MiniBlock({ myRef }) {
   return (
-    <section>
+    <section ref={myRef}>
       <div className="box miniBlock_inner">
         <div className="miniBlock_blog">
           <div className="icon_div">{question}</div>

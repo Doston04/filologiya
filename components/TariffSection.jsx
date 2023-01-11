@@ -1,6 +1,6 @@
 import { cyanCheck, redX } from "../icons/icons";
 
-export default function TariffSection() {
+export default function TariffSection({ myRef, translations }) {
   const tariffs = {
     advantages: [
       {
@@ -45,12 +45,12 @@ export default function TariffSection() {
   };
 
   return (
-    <section className="tariff_section">
+    <section ref={myRef} className="tariff_section">
       <div className="box tariff_inner">
-        <h2 className="h2">Тарифы нашего курса</h2>
+        <h2 className="h2">{translations.tariff_title}</h2>
         <div className="tariffs_container">
           <div className="tariff">
-            <h3 className="h3">Без курса</h3>
+            <h3 className="h3">{translations.xor}</h3>
             <ul className="tariffs_list">
               {tariffs.advantages.map((advantage) => {
                 return (
@@ -63,7 +63,7 @@ export default function TariffSection() {
             </ul>
           </div>
           <div className="tariff">
-            <h3 className="h3">С курсом</h3>
+            <h3 className="h3">{translations.zor}</h3>
             <ul className="tariffs_list">
               {tariffs.disadvantages.map((disadvantage) => {
                 return (

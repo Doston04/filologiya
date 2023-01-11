@@ -3,68 +3,63 @@ import { qalpoq } from "../icons/icons";
 import aboutImg1 from "../public/media/img1.png";
 import aboutImg2 from "../public/media/img2.png";
 
-export default function AboutSection() {
+export default function AboutSection({
+  myRef,
+  formRef,
+  onRefClick,
+  translations,
+}) {
   return (
-    <section className="about_section">
+    <section ref={myRef} className="about_section">
       <div className="box about_inner">
         <div className="about_grid_container">
           <div>
-            <h2 className="h2">Кто ведет наш курс</h2>
+            <h2 className="h2">{translations.prepod}</h2>
             <div className="text_div">
-              <p className="p">
-                Джумабаева Жамила Шариповна – доктор филологических наук,
-                профессор, Заведующий кафедрой Английского языкознания
-                факультета Зарубежной Филологии Национального университета
-                Узбекистана, руководитель научной школы Сопоставительного
-                языкознания;
-              </p>
-              <p className="p">
-                Научный руководитель базовым докторантам и докторантам,
-                свободным соискателям по следующим специальностям: 10.00.06 –
-                Сравнительное литературоведение, сопоставительного языкознание и
-                переводоведение и 13.00.02 – Теория и методика образования и
-                обучения (английский язык) в качестве основного докторанта и
-                научного руководителя Опубликовано более 100 научных статей и
-                тезисов, в том числе 3 монографии 10 человек получили степень
-                доктора философии (PhD) в области филологии и педагогики под ее
-                руководстовом
-              </p>
-              <p className="p">
-                Являлась официальным оппонентом для более 10 диссертаций Членом
-                Экспертного совета по филологии при ВАК (2017-2021 гг.) Член
-                научного совета и семинаров по специальности филологии и
-                педагогике в вузах нашей республики (с 2018 года по настоящее
-                время) Участница международных конференций: США, Германия,
-                Великобритания, Италия, Испания, Португалия, Польша, Турция,
-                Россия
-              </p>
+              <p className="p">{translations.about_txt1}</p>
+              <p className="p">{translations.about_txt2}</p>
+              <p className="p">{translations.about_txt3}</p>
             </div>
-            <button type="button" className="reg_btn">
+            <button
+              type="button"
+              className="reg_btn"
+              onClick={() => onRefClick(formRef)}
+            >
               {qalpoq}
-              <p className="p">Записаться на курс</p>
+              <p className="p">{translations.form_button}</p>
             </button>
           </div>
           <div className="about_images_container">
-            <Image src={aboutImg1} alt="About image" />
-            <Image src={aboutImg2} alt="About image" />
+            <Image
+              src={aboutImg1}
+              alt="About image"
+              quality={100}
+              priority={true}
+            />
+            <Image
+              src={aboutImg2}
+              alt="About image"
+              quality={100}
+              priority={true}
+            />
           </div>
         </div>
         <div className="career_div_container">
           <div className="career_div">
-            <p className="career_title">2006 г.</p>
-            <p className="p">кандидат филологических наук</p>
+            <p className="career_title">2006-г.</p>
+            <p className="p">{translations.kandidat}</p>
           </div>
           <div className="career_div">
-            <p className="career_title">2009 г.</p>
-            <p className="p">доцент</p>
+            <p className="career_title">2009-г.</p>
+            <p className="p">{translations.dotsent}</p>
           </div>
           <div className="career_div">
-            <p className="career_title">2016 г.</p>
-            <p className="p">доктор филологических наук (DSc)</p>
+            <p className="career_title">2016-г.</p>
+            <p className="p">{translations.doctor} (DSc)</p>
           </div>
           <div className="career_div">
-            <p className="career_title">2022 г.</p>
-            <p className="p">профессор</p>
+            <p className="career_title">2022-г.</p>
+            <p className="p">{translations.professor}</p>
           </div>
         </div>
       </div>

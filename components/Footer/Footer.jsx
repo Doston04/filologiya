@@ -29,7 +29,12 @@ export default function Footer({
             <div className={styles.local_nav_div}>
               {sections.map((section) => {
                 return (
-                  <p className="p" key={section.id}>
+                  <p
+                    className="p"
+                    key={section.id}
+                    role="button"
+                    onClick={() => onRefClick(section.myRef)}
+                  >
                     {section.name}
                   </p>
                 );
@@ -45,15 +50,14 @@ export default function Footer({
                 {phone}
                 <span>{allInfo.phone_number}</span>
               </a>
-              <a
-                href="#"
+              <p
                 target="_blank"
                 rel="noreferrer"
                 className={styles.footer_nav_link}
               >
                 {location}
                 <span>{map}</span>
-              </a>
+              </p>
               <a
                 href={`mailto: ${allInfo.email}`}
                 target="_blank"

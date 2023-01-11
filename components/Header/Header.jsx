@@ -54,7 +54,12 @@ export default function Header({ toTop, onRefClick, sections, allInfo }) {
         <nav className={styles.header_navigation}>
           {sections.map((section) => {
             return (
-              <p className="p" role="button" key={section.id}>
+              <p
+                className="p"
+                role="button"
+                key={section.id}
+                onClick={() => onRefClick(section.myRef)}
+              >
                 {section.name}
               </p>
             );

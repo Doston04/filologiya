@@ -2,7 +2,7 @@ import Image from "next/image";
 import { qalpoq } from "../icons/icons";
 import jamilaOpa from "../public/media/jamila-opa.png";
 
-export default function HeroSection({ translations }) {
+export default function HeroSection({ translations, formRef, onRefClick }) {
   return (
     <section className="hero_section">
       <div className="box hero_inner">
@@ -16,7 +16,10 @@ export default function HeroSection({ translations }) {
             }}
           >
             <h1 className="h1">{translations.hero_title}</h1>
-            <button className="reg_btn_hero">
+            <button
+              className="reg_btn_hero"
+              onClick={() => onRefClick(formRef)}
+            >
               {qalpoq}
               <p className="p">{translations.form_button}</p>
             </button>
@@ -39,7 +42,13 @@ export default function HeroSection({ translations }) {
             height: "fit-content",
           }}
         >
-          <Image className="hero_img" src={jamilaOpa} alt="hero image" />
+          <Image
+            className="hero_img"
+            src={jamilaOpa}
+            alt="hero image"
+            quality={100}
+            priority={true}
+          />
         </div>
       </div>
     </section>

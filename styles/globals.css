@@ -3,6 +3,7 @@
 :root {
   --white: #fff;
   --blue: #1878f3;
+  --darker-blue: #88c9ef;
   --black: #353437;
   --border-gray: #d2d2d2;
   --bg-gray: #f5f5f7;
@@ -15,6 +16,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "HelveticaNeueCyr", "Inter", sans-serif;
+  scroll-behavior: smooth !important;
 }
 
 .wrapper {
@@ -141,6 +143,12 @@ a {
   cursor: pointer;
   color: var(--black);
   font-weight: 500;
+  transition: 0.3s;
+}
+
+.reg_btn_hero:hover {
+  background-color: var(--darker-blue);
+  transition: 0.3s;
 }
 
 .hero_stats {
@@ -246,6 +254,7 @@ a {
   overflow: hidden;
   cursor: pointer;
   transition: 0.3s;
+  text-align: center;
 }
 
 .tab_div p.active {
@@ -311,6 +320,7 @@ a {
   border-radius: 60px;
   overflow: hidden;
   transition: 0.3s;
+  text-align: center;
 }
 
 .course_info_table button:hover {
@@ -399,7 +409,8 @@ a {
 
 .single_tariff svg,
 .infoblock_single svg {
-  width: 30px;
+  max-width: 30px;
+  width: 100%;
   height: 30px;
 }
 
@@ -430,10 +441,14 @@ a {
   list-style-type: none;
 }
 
-.infoblock_single {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.infoblock_single p:first-child {
+  margin-top: 0px;
+}
+
+.infoblock_single p {
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 16px;
 }
 
 /* === ABOUT === */
@@ -587,7 +602,7 @@ a {
 }
 
 .more_btn {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 10px;
   background-color: var(--blue);
@@ -681,7 +696,7 @@ a {
   pointer-events: none;
   display: grid;
   place-items: center;
-  background-color: var(--black);
+  background-color: var(--white);
   z-index: 10;
   opacity: 0;
   transition: 1s;
@@ -705,8 +720,8 @@ a {
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid #fff;
-  border-color: #fff transparent #fff transparent;
+  border: 6px solid var(--blue);
+  border-color: var(--blue) transparent var(--blue) transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 
@@ -841,6 +856,10 @@ a {
     font-size: 18px;
     line-height: 27px;
   }
+  .form_form input {
+    border-radius: 40px;
+    padding: 20px 30px;
+  }
   .hero_content > div:first-child {
     align-items: center !important;
     gap: 40px !important;
@@ -927,7 +946,7 @@ a {
   }
   .infoblock_div {
     padding: 24px;
-    border-radius: 40px;
+    border-radius: 18px;
   }
   .infoblock_list {
     margin-top: 24px;

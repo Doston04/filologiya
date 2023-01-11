@@ -1,12 +1,11 @@
 import { blueCheck } from "../icons/icons";
-// import Form from "./Form";
 
-export default function InfoBlock() {
+export default function InfoBlock({ translations }) {
   return (
     <section>
       <div className="box infoblock_inner">
         <div className="infoblock_div">
-          <h2 className="h2">Как преподается наш урок</h2>
+          <h2 className="h2">{translations.prepodovaniye}</h2>
           <ul className="infoblock_list">
             <li className="infoblock_single">
               {blueCheck}
@@ -27,7 +26,7 @@ export default function InfoBlock() {
           </ul>
         </div>
         <div className="infoblock_div">
-          <h2 className="h2">Как будет тип оплаты</h2>
+          <h2 className="h2">{translations.oplata}</h2>
           <ul className="infoblock_list">
             <li className="infoblock_single">
               {blueCheck}
